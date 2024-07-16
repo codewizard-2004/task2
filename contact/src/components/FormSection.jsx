@@ -10,11 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const FormSection = () => {
 
+    const [loading , setLoading] = useState(false);
     const [Name , setName] = useState('');
     const [Username , setUsername] = useState('');
     const [Feedback , setFeedback] = useState('');
 
     const handleSubmit = (e) => {
+        setLoading(true);
         if (!Name || !Username || ! Feedback) {
             toast.warn('Enter all Inputs!', {
                 position: "top-center",
@@ -26,6 +28,7 @@ const FormSection = () => {
                 progress: undefined,
                 theme: "colored",
                 });
+                setLoading(false)
                 return;
         }
         console.log(`Full Name: ${Name}\nUsername: ${Username}\nFeedback: ${Feedback}`)
@@ -45,6 +48,7 @@ const FormSection = () => {
                 progress: undefined,
                 theme: "colored",
                 });
+            setLoading(false)
             setName("");
             setUsername("");
             setFeedback("");
@@ -60,6 +64,7 @@ const FormSection = () => {
                 progress: undefined,
                 theme: "colored",
                 });
+            setLoading(false)
         })
     }
 
@@ -87,7 +92,7 @@ const FormSection = () => {
             <TextField id="outlined-filled" label="Please tell us your feedback" multiline rows={5} maxRows={6} variant="outlined" sx={{mt:2 }}
             value={Feedback} onChange={(e)=>{setFeedback(e.target.value)}}/>
 
-            <Button variant="contained" sx={{mt:2, minWidth: "200px"}} onClick={handleSubmit}>Submit</Button>
+            <Button variant="contained" sx={{mt:2, minWidth: "200px"}} onClick={handleSubmit}>{!loading?<span>Submit</span>:<CircularProgress size={25} />}</Button>
             <ToastContainer />
             <SocialIcons/>
         </form>
