@@ -3,7 +3,7 @@ import { Box ,Typography, TextField,Button } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import SocialIcons from './SocialIcons';
 import emailjs from 'emailjs-com';
-
+import ReCAPTCHA from 'react-google-recaptcha';
 import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,11 +14,16 @@ const FormSection = () => {
     const [Name , setName] = useState('');
     const [Username , setUsername] = useState('');
     const [Feedback , setFeedback] = useState('');
+    const [recaptchaValue, setRecaptchaValue] = useState(null);
+
+    const handleRecaptchaChange = (value) => {
+        setRecaptchaValue(value);
+    };
 
     const handleSubmit = (e) => {
         setLoading(true);
-        if (!Name || !Username || ! Feedback) {
-            toast.warn('Enter all Inputs!', {
+        if (!Name || !Username || ! Feedback || !recaptchaValue) {
+            toast.warn('Enter all Inputs and reCaptcha!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -83,16 +88,21 @@ const FormSection = () => {
             </Typography>
 
             <TextField id="outlined-filled" label="Enter your Full Name" variant="outlined" sx={{
-                mt:2, width:"270px"  , minWidth: "200px"}} value={Name} onChange={(e)=>{setName(e.target.value)}}/>
+                mt:1 , minWidth: "200px"}} value={Name} onChange={(e)=>{setName(e.target.value)}}/>
 
-            <TextField id="outlined-filled" label="Enter your Email Address" variant="outlined" sx={{mt:2, minWidth: "200px"}}
+            <TextField id="outlined-filled" label="Enter your Email Address" variant="outlined" sx={{mt:1, minWidth: "200px"}}
             value={Username} onChange={(e)=>{setUsername(e.target.value)}}/>
 
 
-            <TextField id="outlined-filled" label="Please tell us your feedback" multiline rows={5} maxRows={6} variant="outlined" sx={{mt:2 }}
+            <TextField id="outlined-filled" label="Please tell us your feedback" multiline rows={4} maxRows={6} variant="outlined" sx={{mt:1 }}
             value={Feedback} onChange={(e)=>{setFeedback(e.target.value)}}/>
 
-            <Button variant="contained" sx={{mt:2, minWidth: "200px"}} onClick={handleSubmit}>{!loading?<span>Submit</span>:<CircularProgress size={25} />}</Button>
+            <ReCAPTCHA
+                      sitekey="6LcxbxQqAAAAAAToWoCLEinyOp7qHFw9h0K_3jcB"
+                      onChange={handleRecaptchaChange}
+                    />
+
+            <Button variant="contained" sx={{mt:1, minWidth: "200px"}} onClick={handleSubmit}>{!loading?<span>Submit</span>:<CircularProgress size={25} />}</Button>
             <ToastContainer />
             <SocialIcons/>
         </form>
