@@ -98,7 +98,7 @@ const FormSection = () => {
             value={Feedback} onChange={(e)=>{setFeedback(e.target.value)}}/>
 
             <ReCAPTCHA
-                      sitekey="6LcxbxQqAAAAAAToWoCLEinyOp7qHFw9h0K_3jcB"
+                      sitekey="6Lf1cRQqAAAAAIl1Tkn_MFR82Ywfe2ot-xAY77kB"
                       onChange={handleRecaptchaChange}
                     />
 
