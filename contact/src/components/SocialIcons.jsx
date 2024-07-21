@@ -3,7 +3,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import XIcon from '@mui/icons-material/X';
-import { Box ,Typography, TextField,Button } from '@mui/material';
+import { Box ,Button } from '@mui/material';
 
 const SocialIcons = () => {
   return (

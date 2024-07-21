@@ -5,7 +5,7 @@ import { Box  } from '@mui/material';
 const RightImage = () => {
   return (
     <Box className='image-container' style={{margin: "0px" , padding: "0px" ,height: "100%"}}>
-        <img src='/bg2.jpg' alt="" />
+        <Box component='img' src='/bg2.jpg' alt="" />
       
     </Box>
   )
